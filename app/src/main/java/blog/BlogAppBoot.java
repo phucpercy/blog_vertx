@@ -4,7 +4,7 @@ import blog.app.BlogApp;
 
 public class BlogAppBoot {
     public static void main(String[] args) throws Exception {
-        BlogApp app = null;
+        BlogApp app;
 
         try {
             app = new BlogApp();

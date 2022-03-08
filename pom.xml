@@ -12,6 +12,7 @@
         <module>app</module>
         <module>repo</module>
         <module>pg</module>
+        <module>core</module>
     </modules>
 
     <properties>

@@ -19,13 +19,18 @@ public class BlogPgRepoFactory implements BlogRepoFactory {
     private UserRepo userRepo;
 
     public void start() throws Exception {
-        var poolOpts = new PoolOptions().setMaxSize(10);
-        var connectOpts = new PgConnectOptions()
-                .setHost("localhost")
-                .setHost("5432")
-                .setDatabase("blog")
-                .setPassword("blog@123");
-        var pool = PgPool.pool(vertx, connectOpts, poolOpts);
-        this.userRepo = new PgUserRepo(pool);
+        try {
+            var poolOpts = new PoolOptions().setMaxSize(5);
+            var connectOpts = new PgConnectOptions()
+                    .setHost("localhost")
+                    .setPort(5432)
+                    .setUser("blog")
+                    .setDatabase("blog")
+                    .setPassword("blog@123");
+            var pool = PgPool.pool(vertx, connectOpts, poolOpts);
+            this.userRepo = new PgUserRepo(pool);
+        } catch (Exception e) {
+            throw new Exception(e);
+        }
     }
 }
